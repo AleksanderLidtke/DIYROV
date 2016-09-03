@@ -15,10 +15,6 @@
 
 //#define DEBUG_PRINTOUT // this will cause issues with arming modules as the GUI expects a delay in ms to be returned upon sending "armModules,1"; either fix or don't use the GUI in conjuction with this flag
 
-/* TODO TODO TODO
-- figure out which ESC sends alarm at arming (throttle not zero?) (port hor?)
-*/
-
 // Custom includes.
 #include "Module.h"
 #include "BrushlessDCMotor.h"
@@ -30,8 +26,8 @@
 #include <stdio.h>
 
 // ROV identifiers.
-const String ROV_MODEL = "zy3b";
-const String ROV_SW_VERSION = "2.1.2";
+const String ROV_MODEL = "ROVing Drone";
+const String ROV_SW_VERSION = "2.2.0r";
 
 /* =============================================================================
  * FUNCTION DECLARATIONS.
@@ -105,7 +101,7 @@ Module* actuators[] = {&armModulesModule, &armActuatorModule, &engine1, &engine2
 Module* sensors[] = {&depthSensor, &depthSensor2};
 
 /* =============================================================================
- * FUNCTIONS DEFINITIONS.
+ * MAIN FUNCTIONS DEFINITIONS.
  * =============================================================================
  */
 void setup(void)
@@ -166,6 +162,11 @@ void loop(void)
 	// Reduce rate at which stuff happens.
 	delay(refreshRate.getValue());
 }
+
+/* =============================================================================
+ * HELPER FUNCTIONS DEFINITIONS.
+ * =============================================================================
+ */
 
 boolean getSerial(void)
 /* Read input from the serial port and store it in the inputDataBuffer buffer.
